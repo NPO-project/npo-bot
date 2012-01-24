@@ -6,16 +6,16 @@ class NpoBot_Main
 
     public function  __construct()
     {
-        //Registreer events
+        //Registers events callbacks
         addEventCallback('onConnect', array($this, 'onConnect'));
         
-        //Verbind een bot met de IRC server
+        //Connect the bot to the server and registrer it in the framework
         $bot = new IRCBot_Types_Bot();
         $bot->nickname = 'NPO-bot';
         $bot->connect('localhost'); 
         IRCBot_Application::getInstance()->getBotHandler()->addBot($bot);
         
-        //Laad de module in het framework en start de loop
+        //Add this module to the framework and start the event loop
         $ircBot = IRCBot_Application::getInstance();
         $ircBot->getModuleHandler()->addModuleByObject($this);
         $ircBot->getLoop()->startLoop();
