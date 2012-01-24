@@ -8,6 +8,12 @@ class NpoBot_Spamfilter
     
     public function __construct()
     {
+        $ircBot = IRCBot_Application::getInstance();
+        $ircBot->getModuleHandler()->addModuleByObject($this);
+        $ircBot->getEventHandler()->addEventCallback(
+            'loopIterate',
+            array($this, 'checkList')
+        );
         $this->_prevTime = time();
     }
     public function checkList()

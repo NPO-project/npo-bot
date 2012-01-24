@@ -33,18 +33,11 @@ class NpoBot_Main
     /**
      * This function initialzes all the other modules
      * 
-     * @todo The functions inhere need to in the modules itself
      * @return void
      */
     public function initializeModules()
     {
-        $ircBot = IRCBot_Application::getInstance();
         $this->_spamfilter = new NpoBot_Spamfilter();
-        $ircBot->getModuleHandler()->addModuleByObject($this->_spamfilter);
-        $ircBot->getEventHandler()->addEventCallback(
-            'loopIterate',
-            array($this->_spamfilter, 'checkList')
-        );
     }
     
     /**
