@@ -30,6 +30,12 @@ class NpoBot_Main
         $ircBot->getLoop()->startLoop();
     }
     
+    /**
+     * This function initialzes all the other modules
+     * 
+     * @todo The functions inhere need to in the modules itself
+     * @return void
+     */
     public function initializeModules()
     {
         $ircBot = IRCBot_Application::getInstance();
@@ -41,6 +47,11 @@ class NpoBot_Main
         );
     }
     
+    /**
+     * This method gets called by the event handler if a bot connected
+     * 
+     * @return void
+     */
     public function onConnect()
     {
         joinChan('#tw.nl-npo');

@@ -1,4 +1,5 @@
 <?php
+
 class NpoBot_Spamfilter
 {
     private $_userFilter;
