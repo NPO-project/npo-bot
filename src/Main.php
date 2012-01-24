@@ -1,8 +1,12 @@
 <?php
 require_once '../IRCBot/src/Application.php';
 
+require_once 'Spamfilter.php';
+
 class NpoBot_Main
 {
+
+    private $_spamfilter;
 
     public function  __construct()
     {
@@ -15,10 +19,27 @@ class NpoBot_Main
         $bot->connect('localhost'); 
         IRCBot_Application::getInstance()->getBotHandler()->addBot($bot);
         
-        //Add this module to the framework and start the event loop
+        //Add this module to the framework
         $ircBot = IRCBot_Application::getInstance();
         $ircBot->getModuleHandler()->addModuleByObject($this);
+        
+        //Initialize all the other modules
+        $this->initializeModules();
+        
+        //Start the event loop
         $ircBot->getLoop()->startLoop();
+    }
+    
+    public function initializeModules()
+    {
+        $ircBot = IRCBot_Application::getInstance();
+        $this->_spamfilter = new NpoBot_Spamfilter();
+        $ircBot->getModuleHandler()->addModuleByObject($this->_spamfilter);
+        IRCBot_Application::getInstance()->getEventHandler()
+            ->addEventCallback(
+                'loopIterate',
+                array($this->_spamfilter, 'checkList')
+            );
     }
     
     public function onConnect()
