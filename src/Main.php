@@ -3,7 +3,9 @@ require_once '../IRCBot/src/Application.php';
 
 class NpoBot_Main
 {
-    public function  __construct() {
+
+    public function  __construct()
+    {
         //Registreer events
         addEventCallback('onConnect', array($this, 'onConnect'));
         
