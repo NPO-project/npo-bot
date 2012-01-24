@@ -2,6 +2,7 @@
 require_once '../IRCBot/src/Application.php';
 
 require_once 'Spamfilter.php';
+require_once 'Admin.php';
 
 class NpoBot_Main
 {
@@ -38,6 +39,7 @@ class NpoBot_Main
     public function initializeModules()
     {
         $this->_spamfilter = new NpoBot_Spamfilter();
+        new NpoBot_Admin();
     }
     
     /**
