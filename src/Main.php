@@ -35,11 +35,10 @@ class NpoBot_Main
         $ircBot = IRCBot_Application::getInstance();
         $this->_spamfilter = new NpoBot_Spamfilter();
         $ircBot->getModuleHandler()->addModuleByObject($this->_spamfilter);
-        IRCBot_Application::getInstance()->getEventHandler()
-            ->addEventCallback(
-                'loopIterate',
-                array($this->_spamfilter, 'checkList')
-            );
+        $ircBot->getEventHandler()->addEventCallback(
+            'loopIterate',
+            array($this->_spamfilter, 'checkList')
+        );
     }
     
     public function onConnect()
