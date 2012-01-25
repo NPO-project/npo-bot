@@ -1,4 +1,6 @@
 <?php
+define('CONFIG_FILE', '../build/config.php');
+
 require_once '../IRCBot/src/Application.php';
 
 require_once 'Spamfilter.php';
@@ -9,15 +11,15 @@ class NpoBot_Main
 
     private $_spamfilter;
 
-    public function  __construct()
+    public function  __construct($config)
     {
         //Registers events callbacks
         addEventCallback('onConnect', array($this, 'onConnect'));
         
         //Connect the bot to the server and registrer it in the framework
         $bot = new IRCBot_Types_Bot();
-        $bot->nickname = 'NPO-bot';
-        $bot->connect('localhost'); 
+        $bot->nickname = $config['bot']['nick'];
+        $bot->connect($config['server']['host'], $config['server']['port']); 
         IRCBot_Application::getInstance()->getBotHandler()->addBot($bot);
         
         //Add this module to the framework
@@ -53,5 +55,9 @@ class NpoBot_Main
     }
 
 }
-
-new NpoBot_Main();
+if (!file_exists(CONFIG_FILE)) {
+    throw new Exception('No config file present! Run make');
+} else {
+    include CONFIG_FILE;
+    new NpoBot_Main($config);
+}
