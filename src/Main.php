@@ -1,4 +1,15 @@
 <?php
+/**
+ * The run file
+ * 
+ * PHP version 5
+ * 
+ * @category NPO-project
+ * @package  NPO-bot
+ * @author   Marlin Cremers <marlinc@mms-projects.net>
+ * @license  http://creativecommons.org/licenses/by-nc/3.0/ Creative Commons Attribution-NonCommercial 3.0 Unported License
+ * @link     https://github.com/NPO-project/NPO-bot
+ */
 define('CONFIG_FILE', '../build/config.php');
 
 require_once '../IRCBot/src/Application.php';
@@ -6,11 +17,25 @@ require_once '../IRCBot/src/Application.php';
 require_once 'Spamfilter.php';
 require_once 'Admin.php';
 
+/**
+ * The main bot module that loads all of the other modules
+ * 
+ * @category NPO-project
+ * @package  NPO-bot
+ * @author   Marlin Cremers <marlinc@mms-projects.net>
+ * @license  http://creativecommons.org/licenses/by-nc/3.0/ Creative Commons Attribution-NonCommercial 3.0 Unported License
+ * @link     https://github.com/NPO-project/NPO-bot
+ */
 class NpoBot_Main
 {
 
     private $_spamfilter;
 
+    /**
+     * The main constructer that starts everything
+     * 
+     * @param array $config The configuration data
+     */
     public function  __construct($config)
     {
         //Registers events callbacks
