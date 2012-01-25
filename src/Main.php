@@ -10,7 +10,7 @@
  * @license  http://creativecommons.org/licenses/by-nc/3.0/ Creative Commons Attribution-NonCommercial 3.0 Unported License
  * @link     https://github.com/NPO-project/NPO-bot
  */
-define('CONFIG_FILE', '../build/config.php');
+define('CONFIG_FILE', '../dist/config.php');
 
 require_once '../IRCBot/src/Application.php';
 
