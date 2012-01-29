@@ -1,4 +1,5 @@
 <?php
+require_once 'Daos/Certificates.php';
 
 class NpoBot_Commands_Cert
 {
@@ -21,7 +22,9 @@ class NpoBot_Commands_Cert
         if (!$this->_spamfilter->checkCommand($msg)) {
             return false;
         }
-        msg(chan(), 'Nothing to show. Yet!');
+        $dao = new Npobot_Daos_Certificates();
+        $cert = $dao->getCertificate('Some nick');
+        msg(chan(), 'Id: ' . $cert->getId());
     }
     
 }
