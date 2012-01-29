@@ -16,6 +16,7 @@ require_once '../IRCBot/src/Application.php';
 
 require_once 'Spamfilter.php';
 require_once 'Admin.php';
+require_once 'Commands/Cert.php';
 
 /**
  * The main bot module that loads all of the other modules
@@ -67,6 +68,7 @@ class NpoBot_Main
     {
         $this->_spamfilter = new NpoBot_Spamfilter();
         new NpoBot_Admin();
+        new NpoBot_Commands_Cert($this->_spamfilter);
     }
     
     /**
