@@ -26,10 +26,13 @@ require_once 'Commands/Cert.php';
  * @license  http://creativecommons.org/licenses/by-nc/3.0/ Creative Commons Attribution-NonCommercial 3.0 Unported License
  * @link     https://github.com/NPO-project/NPO-bot
  */
-class NpoBot_Main
+class NpoBot_Main extends IRCBot_Modules_Abstract
 {
 
     private $_spamfilter;
+    public $events = array(
+        'onConnect'     => 'onConnect',
+    );
 
     /**
      * The main constructer that starts everything
@@ -38,9 +41,6 @@ class NpoBot_Main
      */
     public function  __construct($config)
     {
-        //Registers events callbacks
-        addEventCallback('onConnect', array($this, 'onConnect'));
-        
         //Connect the bot to the server and registrer it in the framework
         $bot = new IRCBot_Types_Bot();
         $bot->nickname = $config['bot']['nick'];

@@ -1,7 +1,12 @@
 <?php
 
-class NpoBot_Spamfilter
+class NpoBot_Spamfilter extends IRCBot_Modules_Abstract
 {
+    
+    public $events = array(
+        'loopIterate'      => 'checkList',
+    );
+
     private $_userFilter;
     private $_userIgnore = array();
     private $_prevTime;
@@ -10,10 +15,6 @@ class NpoBot_Spamfilter
     {
         $ircBot = IRCBot_Application::getInstance();
         $ircBot->getModuleHandler()->addModuleByObject($this);
-        $ircBot->getEventHandler()->addEventCallback(
-            'loopIterate',
-            array($this, 'checkList')
-        );
         $this->_prevTime = time();
     }
     public function checkList()
