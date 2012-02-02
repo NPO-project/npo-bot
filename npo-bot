@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+define('CONFIG_FILE', 'dist/config.php');
+
+require_once 'src/Main.php';
+
+if (!file_exists(CONFIG_FILE)) {
+    throw new Exception('No config file present! Run make');
+} else {
+    include CONFIG_FILE;
+    new NpoBot_Main($config);
+}

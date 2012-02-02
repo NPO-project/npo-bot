@@ -1,4 +1,3 @@
-#!/usr/bin/env php
 <?php
 /**
  * The run file
@@ -11,9 +10,8 @@
  * @license  http://creativecommons.org/licenses/by-nc/3.0/ Creative Commons Attribution-NonCommercial 3.0 Unported License
  * @link     https://github.com/NPO-project/NPO-bot
  */
-define('CONFIG_FILE', '../dist/config.php');
 
-require_once '../IRCBot/src/Application.php';
+require_once 'IRCBot/src/Application.php';
 
 require_once 'Spamfilter.php';
 require_once 'Admin.php';
@@ -82,10 +80,4 @@ class NpoBot_Main
         joinChan('#tw.nl-npo');
     }
 
-}
-if (!file_exists(CONFIG_FILE)) {
-    throw new Exception('No config file present! Run make');
-} else {
-    include CONFIG_FILE;
-    new NpoBot_Main($config);
 }

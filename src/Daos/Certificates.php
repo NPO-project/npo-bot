@@ -1,5 +1,5 @@
 <?php
-require_once 'Types/Certificate.php';
+require_once 'src/Types/Certificate.php';
 
 class Npobot_Daos_Certificates
 {
