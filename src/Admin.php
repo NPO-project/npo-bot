@@ -5,7 +5,7 @@ class NpoBot_Admin
     
     public function __construct()
     {
-        $ircBot = IRCBot_Application::getInstance();
+        $ircBot = \Ircbot\Application::getInstance();
         $ircBot->getModuleHandler()->addModuleByObject($this);
         $ircBot->getUserCommandHandler()
             ->setDefaultMsgType(TYPE_CHANMSG)

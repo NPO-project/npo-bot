@@ -9,7 +9,7 @@ class NpoBot_Commands_Cert
     public function __construct(NpoBot_Spamfilter $spamfilter)
     {
         $this->_spamfilter = $spamfilter;
-        $ircBot = IRCBot_Application::getInstance();
+        $ircBot = \Ircbot\Application::getInstance();
         $ircBot->getModuleHandler()->addModuleByObject($this);
         $ircBot->getUserCommandHandler()
             ->setDefaultMsgType(TYPE_CHANMSG)
@@ -24,7 +24,7 @@ class NpoBot_Commands_Cert
         }
         $dao = new Npobot_Daos_Certificates();
         $cert = $dao->getCertificate('Some nick');
-        msg(chan(), 'Id: ' . $cert->getId());
+        \Ircbot\msg(chan(), 'Id: ' . $cert->getId());
     }
     
 }

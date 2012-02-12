@@ -12,6 +12,9 @@
  */
 
 require_once 'IRCBot/src/Application.php';
+require_once 'IRCBot/src/shortFunctions.php';
+
+\Ircbot\Application::getInstance();
 
 require_once 'Spamfilter.php';
 require_once 'Admin.php';
@@ -26,12 +29,12 @@ require_once 'Commands/Cert.php';
  * @license  http://creativecommons.org/licenses/by-nc/3.0/ Creative Commons Attribution-NonCommercial 3.0 Unported License
  * @link     https://github.com/NPO-project/NPO-bot
  */
-class NpoBot_Main extends IRCBot_Modules_Abstract
+class NpoBot_Main extends \Ircbot\Module\AModule
 {
 
     private $_spamfilter;
     public $events = array(
-        'onConnect'     => 'onConnect',
+        'onConnect',
     );
 
     /**
@@ -42,13 +45,13 @@ class NpoBot_Main extends IRCBot_Modules_Abstract
     public function  __construct($config)
     {
         //Connect the bot to the server and registrer it in the framework
-        $bot = new IRCBot_Types_Bot();
+        $bot = new \Ircbot\Type\Bot();
         $bot->nickname = $config['bot']['nick'];
         $bot->connect($config['server']['host'], $config['server']['port']); 
-        IRCBot_Application::getInstance()->getBotHandler()->addBot($bot);
+        \Ircbot\Application::getInstance()->getBotHandler()->addBot($bot);
         
         //Add this module to the framework
-        $ircBot = IRCBot_Application::getInstance();
+        $ircBot = \Ircbot\Application::getInstance();
         $ircBot->getModuleHandler()->addModuleByObject($this);
         
         //Initialize all the other modules
@@ -77,7 +80,7 @@ class NpoBot_Main extends IRCBot_Modules_Abstract
      */
     public function onConnect()
     {
-        joinChan('#tw.nl-npo');
+        \Ircbot\joinChan('#tw.nl-npo');
     }
 
 }

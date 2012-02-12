@@ -1,6 +1,6 @@
 <?php
 
-class NpoBot_Spamfilter extends IRCBot_Modules_Abstract
+class NpoBot_Spamfilter extends \Ircbot\Module\AModule
 {
     
     public $events = array(
@@ -13,13 +13,13 @@ class NpoBot_Spamfilter extends IRCBot_Modules_Abstract
     
     public function __construct()
     {
-        $ircBot = IRCBot_Application::getInstance();
+        $ircBot = \Ircbot\Application::getInstance();
         $ircBot->getModuleHandler()->addModuleByObject($this);
         $this->_prevTime = time();
     }
     public function checkList()
     {
-        $debugger = IRCBot_Application::getInstance()->getDebugger();
+        $debugger = \Ircbot\Application::getInstance()->getDebugger();
         if ((time() - $this->_prevTime) >= 3) {
             if (!empty($this->_userFilter)) {
                 $debugger->log(
@@ -57,7 +57,7 @@ class NpoBot_Spamfilter extends IRCBot_Modules_Abstract
     }
     public function checkCommand(IRCBot_Types_MessageCommand $msg)
     {
-        $debugger = IRCBot_Application::getInstance()->getDebugger();
+        $debugger = \Ircbot\Application::getInstance()->getDebugger();
         if (isset($this->_userIgnore[strtolower($msg->mask->host)])) {
             $debugger->log(
                 'Spamfilter',
