@@ -11,8 +11,8 @@
  * @link     https://github.com/NPO-project/NPO-bot
  */
 
-require_once 'IRCBot/src/Application.php';
-require_once 'IRCBot/src/shortFunctions.php';
+require_once 'library/IRCBot/src/Application.php';
+require_once 'library/IRCBot/src/shortFunctions.php';
 
 \Ircbot\Application::getInstance();
 
